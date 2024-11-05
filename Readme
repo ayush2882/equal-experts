@@ -1,0 +1,49 @@
+# Equal Experts Assignment
+
+1. Understand the problem statement.
+
+ `The problem statement is to write a HTTP web server API that will fetch a GitHub user's public gists via the GitHub API.` 
+ `The API is implemented using Flask and packaged into a Docker container.`
+
+2. Setup and Run Instructions
+
+    2(a) Prerequisites:-
+
+    - Docker installed on local
+    - Python installed on local
+    - Git installed on local
+
+    2(b) Cloning the Git Repo:
+
+    `git clone git@github.com:EqualExperts-Assignments/equal-experts-profuse-ethical-clean-plan-0d124cb93304.git`
+    `cd equal-experts-profuse-ethical-clean-plan-0d124cb93304`
+    
+3. Installing dependencies: Put the dependencies(Flask, requests in this case) in requirements.txt file.
+
+4. Installing dependencies: `pip3 install -r requirements.txt`
+
+5. Running the app locally - `python3 app.py`
+
+6. Created test cases which would handle a valid and invalid user.
+
+7. Run the test cases - `python3 -m unittest test_app.py`
+
+8. Created a Docker file to dockerize the above service.
+
+9. Building the docker image - `docker build -t ayush2882/equal-experts-image .`
+
+10. Running the container - `docker run -p 8080:8080 ayush2882/equal-experts-image`
+
+11. Checking response for valid and invalid users:
+
+    a. Octocat: `curl http://localhost:8080/octocat`
+
+    `[{"description":"Hello world!","id":"6cad326836d38bd3a7ae","url":"https://gist.github.com/octocat/6cad326836d38bd3a7ae"},{"description":"","id":"0831f3fbd83ac4d46451","url":"https://gist.github.com/octocat/0831f3fbd83ac4d46451"},{"description":"","id":"2a6851cde24cdaf4b85b","url":"https://gist.github.com/octocat/2a6851cde24cdaf4b85b"},{"description":"Some common .gitignore configurations","id":"9257657","url":"https://gist.github.com/octocat/9257657"},{"description":null,"id":"1305321","url":"https://gist.github.com/octocat/1305321"},{"description":null,"id":"1169854","url":"https://gist.github.com/octocat/1169854"},{"description":null,"id":"1169852","url":"https://gist.github.com/octocat/1169852"},{"description":null,"id":"1162032","url":"https://gist.github.com/octocat/1162032"}]`
+
+    b. Invalid User: `curl http://localhost:8080/nonexistentuser123`
+    
+    `{"error":"User not found or GitHub API error"}`
+
+    c. Robert: `curl http://localhost:8080/robert`
+
+    `[{"description":"Wacom Experience Program Privacy Policy","id":"9690e0f0cf4f72a9f51e36952c2776e2","url":"https://gist.github.com/robert/9690e0f0cf4f72a9f51e36952c2776e2"},{"description":"Programming projects for Advanced Beginners #2: Game of Life","id":"5100dfffe8afbb04b560dd0fff184753","url":"https://gist.github.com/robert/5100dfffe8afbb04b560dd0fff184753"},{"description":"","id":"7eee027244f81523e57b1f3df32cb6a2","url":"https://gist.github.com/robert/7eee027244f81523e57b1f3df32cb6a2"},{"description":"Programming projects for Advanced Beginners: ASCII art (https://robertheaton.com/2018/06/12/programming-projects-for-advanced-beginners-ascii-art/)","id":"b0b14b1fd4a5feb2b45ab3ce049f5707","url":"https://gist.github.com/robert/b0b14b1fd4a5feb2b45ab3ce049f5707"},{"description":"","id":"6052207","url":"https://gist.github.com/robert/6052207"}]`
