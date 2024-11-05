@@ -8,10 +8,12 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/ayush2882/equal-experts.git', credentialsId: 'github-token'
+                sh ''' 
+                git pull 'https://${github}@github.com/ayush2882/equal-experts.git'
+                '''
             }
         }
-
+        
         stage('Run Tests') {
             steps {
                 sh 'python -m unittest test_app.py'
